@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunhao.onlineexambackend.mapper.UserMapper">
+
+<!--    用户表-->
+<!--    create table user(-->
+<!--    id varchar(32) primary key comment '学工号',-->
+<!--    username varchar(32) not null comment '用户名',-->
+<!--    gender varchar(32) not null comment '性别',-->
+<!--    password varchar(32) not null comment '密码',-->
+<!--    institute varchar(32) default null comment '学院',-->
+<!--    major varchar(32) default null comment '专业',-->
+<!--    grade varchar(32) default null comment '年级',-->
+<!--    classes varchar(32) default null comment '班级',-->
+<!--    tel varchar(32) not null comment '电话号码',-->
+<!--    email varchar(32) not null comment '邮箱',-->
+<!--    role int not null comment '角色(0管理员，1教师，2学生)'-->
+<!--    ) Engine = InnoDB CHARACTER SET = utf8 comment '用户表';-->
+
+    <!-- 查询所有学生 -->
+    <select id="getStudents" resultType="com.sunhao.onlineexambackend.entity.po.User">
+        SELECT * FROM user WHERE role = 2
+    </select>
+
+    <!-- 根据ID查询学生 -->
+    <select id="getStudentById" resultType="com.sunhao.onlineexambackend.entity.po.User">
+        SELECT * FROM user WHERE id = #{id} and role = 2
+    </select>
+
+    <!-- 添加学生 -->
+    <insert id="addStudent" parameterType="com.sunhao.onlineexambackend.entity.po.User">
+        INSERT INTO user values (#{id}, #{username}, #{gender}, #{password}, #{institute}, #{major}, #{grade}, #{classes}, #{tel}, #{email}, 2)
+    </insert>
+
+    <!-- 重置学生密码 -->
+    <update id="updateStudentPwd" parameterType="com.sunhao.onlineexambackend.entity.po.User">
+        UPDATE user SET password = #{password} WHERE id = #{id} and role = 2
+    </update>
+
+    <!-- 删除学生 -->
+    <delete id="deleteStudent" parameterType="com.sunhao.onlineexambackend.entity.po.User">
+        DELETE FROM user WHERE id = #{id} and role = 2
+    </delete>
+
+<!--    查询所有老师-->
+    <select id="getTeachers" resultType="com.sunhao.onlineexambackend.entity.po.User">
+        SELECT * FROM user WHERE role = 1
+    </select>
+
+<!--    根据ID查询老师-->
+    <select id="getTeacherById" resultType="com.sunhao.onlineexambackend.entity.po.User">
+        SELECT * FROM user WHERE id = #{id} and role = 1
+    </select>
+
+<!--    添加老师-->
+    <insert id="addTeacher" parameterType="com.sunhao.onlineexambackend.entity.po.User">
+    INSERT INTO user (id, username, gender, password, institute, tel, email, role) values (#{id}, #{username}, #{gender}, #{password}, #{institute}, #{tel}, #{email}, 1)
+    </insert>
+
+<!--    删除老师-->
+    <delete id="deleteTeacher" parameterType="com.sunhao.onlineexambackend.entity.po.User">
+        DELETE FROM user WHERE id = #{id} and role = 1
+    </delete>
+
+<!--    查询所有管理员-->
+    <select id="getAdmins" resultType="com.sunhao.onlineexambackend.entity.po.User">
+        SELECT * FROM user WHERE role = 0
+    </select>
+
+<!--    根据ID查询管理员-->
+    <select id="getAdminById" resultType="com.sunhao.onlineexambackend.entity.po.User">
+        SELECT * FROM user WHERE id = #{id} and role = 0
+    </select>
+</mapper>
+
