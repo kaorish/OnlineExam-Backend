@@ -1,7 +1,10 @@
 package com.sunhao.onlineexambackend.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -35,21 +38,29 @@ public class Question implements Serializable {
     /**
      * 选项A
      */
+    @TableField("optionA")
+    @JsonProperty("optionA")
     private String optionA;
 
     /**
      * 选项B
      */
+    @TableField("optionB")
+    @JsonProperty("optionB")
     private String optionB;
 
     /**
      * 选项C
      */
+    @TableField("optionC")
+    @JsonProperty("optionC")
     private String optionC;
 
     /**
      * 选项D
      */
+    @TableField("optionD")
+    @JsonProperty("optionD")
     private String optionD;
 
     /**

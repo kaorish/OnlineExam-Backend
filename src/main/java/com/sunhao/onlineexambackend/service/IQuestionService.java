@@ -1,5 +1,7 @@
 package com.sunhao.onlineexambackend.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IQuestionService extends IService<Question> {
 
+    IPage<Question> getQustions(Page<Question> questionPage);
+
+    IPage<Question> getQuestionsBySubject(Page<Question> questionPage, String subject);
 }

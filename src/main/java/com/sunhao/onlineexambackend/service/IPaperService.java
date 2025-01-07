@@ -16,4 +16,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IPaperService extends IService<Paper> {
 
     IPage<Paper> getPapers(Page<Paper> paperPage);
+
+    Paper getPaperById(Integer id);
+
+    int addPaper(Paper paper);
+
+    int deletePaper(Integer id);
+
+    IPage<Paper> getPapersByExamId(Integer exam_id, Page<Paper> paperPage);
 }

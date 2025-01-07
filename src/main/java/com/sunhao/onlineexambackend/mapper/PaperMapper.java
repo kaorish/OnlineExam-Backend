@@ -1,5 +1,7 @@
 package com.sunhao.onlineexambackend.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Paper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface PaperMapper extends BaseMapper<Paper> {
 
+    IPage<Paper> getPapersByExamId(Integer exam_id, Page<Paper> paperPage);
 }

@@ -1,15 +1,23 @@
 package com.sunhao.onlineexambackend.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@TableName("paper_question")
 public class PaperQuestion {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableField("paper_id")
+    @JsonProperty("paper_id")
     private Integer paperId;
 
+    @TableField("question_id")
+    @JsonProperty("question_id")
     private Integer questionId;
 
     public Integer getId() {

@@ -79,7 +79,7 @@ public class UserController {
         if (res == 1) {
             return ResultUtil.isSuccess("添加成功", null);
         } else {
-            return ResultUtil.isFail(400, "添加失败");
+            return ResultUtil.isFail(500, "添加失败");
         }
     }
 
@@ -100,7 +100,7 @@ public class UserController {
         if (res == 1) {
             return ResultUtil.isSuccess("更新成功", null);
         } else {
-            return ResultUtil.isFail(400, "更新失败");
+            return ResultUtil.isFail(500, "更新失败");
         }
     }
 
@@ -117,7 +117,7 @@ public class UserController {
         if (res == 1) {
             return ResultUtil.isSuccess("删除成功", null);
         } else {
-            return ResultUtil.isFail(400, "删除失败");
+            return ResultUtil.isFail(500, "删除失败");
         }
     }
 
@@ -173,7 +173,7 @@ public class UserController {
         if (res == 1) {
             return ResultUtil.isSuccess("添加成功", null);
         } else {
-            return ResultUtil.isFail(400, "添加失败");
+            return ResultUtil.isFail(500, "添加失败");
         }
     }
 
@@ -195,7 +195,7 @@ public class UserController {
         if (res == 1) {
             return ResultUtil.isSuccess("删除成功", null);
         } else {
-            return ResultUtil.isFail(400, "删除失败");
+            return ResultUtil.isFail(500, "删除失败");
         }
     }
 

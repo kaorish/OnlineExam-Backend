@@ -1,7 +1,10 @@
 package com.sunhao.onlineexambackend.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -30,7 +33,9 @@ public class Paper implements Serializable {
     /**
      * 考试编号
      */
-    private String examId;
+    @TableField("exam_id")
+    @JsonProperty("exam_id") // 确保JSON中的exam_id映射到examId字段
+    private Integer examId;
 
     public Integer getId() {
         return id;
@@ -48,11 +53,11 @@ public class Paper implements Serializable {
         this.title = title;
     }
 
-    public String getExamId() {
+    public Integer getExamId() {
         return examId;
     }
 
-    public void setExamId(String examId) {
+    public void setExamId(Integer examId) {
         this.examId = examId;
     }
 

@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Paper;
 import com.sunhao.onlineexambackend.service.serviceimpl.PaperServiceImpl;
 import com.sunhao.onlineexambackend.util.ResultUtil;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 
@@ -20,8 +18,7 @@ import javax.annotation.Resource;
  * @author sunhao
  * @since 2025-01-06
  */
-@Controller
-@RequestMapping("/paper")
+@RestController
 public class PaperController {
 
     @Resource
@@ -40,12 +37,85 @@ public class PaperController {
                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Paper> paperPage = new Page<>(page, size);
         IPage<Paper> res = paperService.getPapers(paperPage);
-        if (res != null) {
+        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
             return ResultUtil.isSuccess("分页查询所有试卷", res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到试卷");
         }
+    }
 
+    @GetMapping("/papers/byExamId")
+    public ResultUtil getPapersByExamId(
+            @RequestParam(value = "exam_id") Integer exam_id,
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        Page<Paper> paperPage = new Page<>(page, size);
+        IPage<Paper> res = paperService.getPapersByExamId(exam_id, paperPage);
+        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+            return ResultUtil.isSuccess("分页查询所有试卷", res);
+        } else {
+            return ResultUtil.isFail(404, "未查询到试卷");
+        }
+    }
+
+    /**
+     * 根据试卷ID查询试卷
+     * 示例请求: GET /paper?id=1
+     *
+     * @param id 试卷ID
+     * @return 试卷信息
+     */
+    @GetMapping("/paper")
+    public ResultUtil getPaperById(@RequestParam("id") Integer id) {
+        Paper res = paperService.getPaperById(id);
+        if (res != null) {
+            return ResultUtil.isSuccess("根据ID查询试卷", res);
+        } else {
+            return ResultUtil.isFail(404, "未查询到试卷");
+        }
+    }
+
+    /**
+     * 添加试卷
+     * 示例请求: POST /paper
+     * @param paper 试卷信息
+     * @return 添加结果
+     */
+    @PostMapping("/paper")
+    public ResultUtil addPaper(@RequestBody Paper paper) {
+
+        int res = paperService.addPaper(paper);
+        if (res == 1) {
+            return ResultUtil.isSuccess("添加成功", paper); // 返回插入后的 Paper 对象
+        } else {
+            return ResultUtil.isFail(500, "添加失败");
+        }
+    }
+
+    @PutMapping("/paper")
+    public ResultUtil updatePaper(@RequestBody Paper paper) {
+        boolean res = paperService.updateById(paper);
+        if (res) {
+            return ResultUtil.isSuccess("更新成功", paper);
+        } else {
+            return ResultUtil.isFail(500, "更新失败");
+        }
+    }
+
+    /**
+     * 删除试卷
+     * 示例请求: DELETE /paper?id=1
+     * @param id 试卷ID
+     * @return 删除结果
+     */
+    @DeleteMapping("/paper")
+    public ResultUtil deletePaper(@RequestParam("id") Integer id) {
+        int res = paperService.deletePaper(id);
+        if (res == 1) {
+            return ResultUtil.isSuccess("删除成功", res);
+        } else {
+            return ResultUtil.isFail(500, "删除失败");
+        }
     }
 
 }
