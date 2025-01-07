@@ -16,4 +16,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface ExamMapper extends BaseMapper<Exam> {
 
     IPage<Exam> getExams(Page<Exam> examPage);
+
+    Exam getExam(Integer id);
 }

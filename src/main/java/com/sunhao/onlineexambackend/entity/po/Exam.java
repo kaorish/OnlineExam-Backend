@@ -80,11 +80,6 @@ public class Exam implements Serializable {
 
 
     /**
-     * 考试状态(0未开始，1进行中，2已结束)
-     */
-    private Integer status;
-
-    /**
      * 考试类型
      */
     private String type;
@@ -190,14 +185,6 @@ public class Exam implements Serializable {
         this.totalScore = totalScore;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public String getType() {
         return type;
     }
@@ -229,7 +216,6 @@ public class Exam implements Serializable {
             ", endTime = " + endTime +
             ", duration = " + duration +
             ", totalScore = " + totalScore +
-            ", status = " + status +
             ", type = " + type +
             ", tips = " + tips +
         "}";

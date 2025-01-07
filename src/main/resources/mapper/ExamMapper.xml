@@ -2,8 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunhao.onlineexambackend.mapper.ExamMapper">
 
+<!--    建表语句-->
+<!--    create table exam(-->
+<!--    id int primary key auto_increment comment '考试编号',-->
+<!--    title varchar(255) not null comment '考试名称',-->
+<!--    description varchar(255) default null comment '考试描述',-->
+<!--    paper_id int default null comment '选用试卷编号',-->
+<!--    institute varchar(32) default null comment '学院',-->
+<!--    major varchar(32) default null comment '专业',-->
+<!--    grade varchar(32) default null comment '年级',-->
+<!--    term varchar(32) default null comment '学期',-->
+<!--    start_time datetime not null comment '开始时间',-->
+<!--    end_time datetime not null comment '结束时间',-->
+<!--    duration int not null comment '考试时长',-->
+<!--    total_score int not null comment '总分',-->
+<!--    status int not null comment '考试状态(0未开始，1进行中，2已结束)',-->
+<!--    type varchar(32) not null comment '考试类型',-->
+<!--    tips varchar(255) default null comment '注意事项'-->
+<!--    ) Engine = InnoDB CHARACTER SET = utf8 comment '考试安排表';-->
+
+    <!-- 查询所有考试 -->
     <select id="getExams" resultType="com.sunhao.onlineexambackend.entity.po.Exam">
         SELECT * FROM exam
+    </select>
+
+    <!-- 根据考试编号查询考试 -->
+    <select id="getExam" resultType="com.sunhao.onlineexambackend.entity.po.Exam">
+        SELECT * FROM exam WHERE id = #{id}
     </select>
 
 </mapper>

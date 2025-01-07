@@ -45,7 +45,7 @@ public class UserController {
         if (res != null) {
             return ResultUtil.isSuccess("分页查询所有学生", res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到学生");
         }
     }
 
@@ -62,7 +62,7 @@ public class UserController {
         if (res != null) {
             return ResultUtil.isSuccess(res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到该学生");
         }
     }
 
@@ -139,7 +139,7 @@ public class UserController {
         if (res != null) {
             return ResultUtil.isSuccess("分页查询所有老师", res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到老师");
         }
     }
 
@@ -156,7 +156,7 @@ public class UserController {
         if (res != null) {
             return ResultUtil.isSuccess(res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到该老师");
         }
     }
 
@@ -217,7 +217,7 @@ public class UserController {
         if (res != null) {
             return ResultUtil.isSuccess("分页查询所有管理员", res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到管理员");
         }
     }
 
@@ -235,7 +235,7 @@ public class UserController {
         if (res != null) {
             return ResultUtil.isSuccess(res);
         } else {
-            return ResultUtil.isFail(400, "查询失败");
+            return ResultUtil.isFail(404, "未查询到该管理员");
         }
     }
 
