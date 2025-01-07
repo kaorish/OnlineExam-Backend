@@ -2,6 +2,7 @@ package com.sunhao.onlineexambackend.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sunhao.onlineexambackend.entity.dto.UpdatePwdDTO;
 import com.sunhao.onlineexambackend.entity.po.User;
 import com.sunhao.onlineexambackend.service.serviceimpl.UserServiceImpl;
 import com.sunhao.onlineexambackend.util.ResultUtil;
@@ -94,8 +95,8 @@ public class UserController {
      * @return 更新结果
      */
     @PutMapping("/student")
-    public ResultUtil updateStudentPwd(@RequestBody User user) {
-        int res = userService.updateStudentPwd(user);
+    public ResultUtil updateStudentPwd(@RequestBody UpdatePwdDTO updatePwdDTO) {
+        int res = userService.updateStudentPwd(updatePwdDTO);
         if (res == 1) {
             return ResultUtil.isSuccess("更新成功", null);
         } else {

@@ -2,6 +2,7 @@ package com.sunhao.onlineexambackend.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sunhao.onlineexambackend.entity.dto.UpdatePwdDTO;
 import com.sunhao.onlineexambackend.entity.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -21,7 +22,7 @@ public interface IUserService extends IService<User> {
 
     int addStudent(User user);
 
-    int updateStudentPwd(User user);
+    int updateStudentPwd(UpdatePwdDTO updatePwdDTO);
 
     int deleteStudent(String id);
 

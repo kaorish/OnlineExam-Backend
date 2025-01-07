@@ -38,6 +38,11 @@ public class User implements Serializable {
     private String password;
 
     /**
+     * 盐
+     */
+    private String salt;
+
+    /**
      * 学院
      */
     private String institute;
@@ -104,6 +109,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     public String getInstitute() {
         return institute;
     }
@@ -167,6 +180,7 @@ public class User implements Serializable {
             ", username = " + username +
             ", gender = " + gender +
             ", password = " + password +
+            ", salt = " + salt +
             ", institute = " + institute +
             ", major = " + major +
             ", grade = " + grade +

@@ -11,6 +11,7 @@
 <!--    username varchar(32) not null comment '用户名',-->
 <!--    gender varchar(32) not null comment '性别',-->
 <!--    password varchar(32) not null comment '密码',-->
+<!--    salt varchar(32) not null comment '盐',-->
 <!--    institute varchar(32) default null comment '学院',-->
 <!--    major varchar(32) default null comment '专业',-->
 <!--    grade varchar(32) default null comment '年级',-->
@@ -32,7 +33,7 @@
 
     <!-- 添加学生 -->
     <insert id="addStudent" parameterType="com.sunhao.onlineexambackend.entity.po.User">
-        INSERT INTO user values (#{id}, #{username}, #{gender}, #{password}, #{institute}, #{major}, #{grade}, #{classes}, #{tel}, #{email}, 2)
+        INSERT INTO user values (#{id}, #{username}, #{gender}, #{password}, #{salt}, #{institute}, #{major}, #{grade}, #{classes}, #{tel}, #{email}, 2)
     </insert>
 
     <!-- 重置学生密码 -->
@@ -57,7 +58,7 @@
 
 <!--    添加老师-->
     <insert id="addTeacher" parameterType="com.sunhao.onlineexambackend.entity.po.User">
-    INSERT INTO user (id, username, gender, password, institute, tel, email, role) values (#{id}, #{username}, #{gender}, #{password}, #{institute}, #{tel}, #{email}, 1)
+    INSERT INTO user (id, username, gender, password, salt, institute, tel, email, role) values (#{id}, #{username}, #{gender}, #{password}, #{salt},  #{institute}, #{tel}, #{email}, 1)
     </insert>
 
 <!--    删除老师-->

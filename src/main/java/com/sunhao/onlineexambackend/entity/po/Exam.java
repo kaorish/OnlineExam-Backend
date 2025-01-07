@@ -34,6 +34,11 @@ public class Exam implements Serializable {
     private String description;
 
     /**
+     * 选用试卷编号
+     */
+    private String paperId;
+
+    /**
      * 学院
      */
     private String institute;
@@ -73,10 +78,6 @@ public class Exam implements Serializable {
      */
     private Integer totalScore;
 
-    /**
-     * 试卷编号
-     */
-    private Integer paperId;
 
     /**
      * 考试状态(0未开始，1进行中，2已结束)
@@ -115,6 +116,14 @@ public class Exam implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(String paperId) {
+        this.paperId = paperId;
     }
 
     public String getInstitute() {
@@ -181,14 +190,6 @@ public class Exam implements Serializable {
         this.totalScore = totalScore;
     }
 
-    public Integer getPaperId() {
-        return paperId;
-    }
-
-    public void setPaperId(Integer paperId) {
-        this.paperId = paperId;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -219,6 +220,7 @@ public class Exam implements Serializable {
             "id = " + id +
             ", title = " + title +
             ", description = " + description +
+            ", paperId = " + paperId +
             ", institute = " + institute +
             ", major = " + major +
             ", grade = " + grade +
@@ -227,7 +229,6 @@ public class Exam implements Serializable {
             ", endTime = " + endTime +
             ", duration = " + duration +
             ", totalScore = " + totalScore +
-            ", paperId = " + paperId +
             ", status = " + status +
             ", type = " + type +
             ", tips = " + tips +

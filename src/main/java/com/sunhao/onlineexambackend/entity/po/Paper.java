@@ -23,9 +23,14 @@ public class Paper implements Serializable {
     private Integer id;
 
     /**
-     * 题目编号
+     * 试卷名称
      */
-    private String questionId;
+    private String title;
+
+    /**
+     * 考试编号
+     */
+    private String examId;
 
     public Integer getId() {
         return id;
@@ -35,19 +40,28 @@ public class Paper implements Serializable {
         this.id = id;
     }
 
-    public String getQuestionId() {
-        return questionId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setQuestionId(String questionId) {
-        this.questionId = questionId;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getExamId() {
+        return examId;
+    }
+
+    public void setExamId(String examId) {
+        this.examId = examId;
     }
 
     @Override
     public String toString() {
         return "Paper{" +
-            "id = " + id +
-            ", questionId = " + questionId +
-        "}";
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", examId='" + examId + '\'' +
+                '}';
     }
 }

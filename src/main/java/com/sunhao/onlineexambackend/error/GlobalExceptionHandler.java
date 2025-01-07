@@ -1,5 +1,6 @@
-package com.sunhao.onlineexambackend.util;
+package com.sunhao.onlineexambackend.error;
 
+import com.sunhao.onlineexambackend.util.ResultUtil;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
