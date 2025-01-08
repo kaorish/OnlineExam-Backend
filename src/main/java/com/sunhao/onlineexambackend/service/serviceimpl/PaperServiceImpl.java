@@ -74,7 +74,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
     public boolean addPaperAuto(PaperDTO paperDTO) {
         Paper paper = new Paper();
         paper.setTitle(paperDTO.getTitle());
-        Exam exam = examMapper.getExamByTitle(paperDTO.getTitle()); // 根据试卷的title找到对应的考试
+        Exam exam = examMapper.getExamByTitle(paperDTO.getExam_title()); // 根据试卷的title找到对应的考试
         if (exam == null) {
             return false;
         }

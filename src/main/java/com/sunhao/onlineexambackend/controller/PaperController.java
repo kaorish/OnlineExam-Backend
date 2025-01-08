@@ -79,7 +79,7 @@ public class PaperController {
     /**
      * 添加试卷
      * 示例请求: POST /paper/auto
-     * @param PaperDTO 组卷信息
+     * @param paperDTO 组卷信息
      * @return 添加结果
      */
     @PostMapping("/paper/auto")
