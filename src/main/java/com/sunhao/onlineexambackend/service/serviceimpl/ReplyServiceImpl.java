@@ -1,5 +1,8 @@
 package com.sunhao.onlineexambackend.service.serviceimpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Reply;
 import com.sunhao.onlineexambackend.mapper.ReplyMapper;
 import com.sunhao.onlineexambackend.service.IReplyService;
@@ -17,4 +20,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReplyServiceImpl extends ServiceImpl<ReplyMapper, Reply> implements IReplyService {
 
+    @Override
+    public IPage<Reply> getReplies(Page<Reply> replyPage, String messageId) {
+        QueryWrapper<Reply> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("message_id", messageId);
+        return baseMapper.selectPage(replyPage, queryWrapper);
+    }
 }

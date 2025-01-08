@@ -1,5 +1,7 @@
 package com.sunhao.onlineexambackend.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Reply;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IReplyService extends IService<Reply> {
 
+    IPage<Reply> getReplies(Page<Reply> replyPage, String messageId);
 }
