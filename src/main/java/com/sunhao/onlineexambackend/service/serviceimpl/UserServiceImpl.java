@@ -8,8 +8,11 @@ import com.sunhao.onlineexambackend.mapper.UserMapper;
 import com.sunhao.onlineexambackend.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sunhao.onlineexambackend.util.HashPasswordWithSalt;
+import com.sunhao.onlineexambackend.util.SaltGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -22,7 +25,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
@@ -70,6 +73,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     public int addTeacher(User user) {
+        String salt = SaltGenerator.generateSalt();
+        String password = HashPasswordWithSalt.hashPasswordWithSalt(user.getPassword(), salt);
+        user.setSalt(salt);
+        user.setPassword(password);
         return userMapper.addTeacher(user);
     }
 
@@ -85,5 +92,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getAdminById(String id) {
         return userMapper.getAdminById(id);
+    }
+
+    @Override
+    public int updateStudent(User user) {
+        return userMapper.updateStudent(user);
+    }
+
+    @Override
+    public int updateTeacher(User user) {
+        return userMapper.updateTeacher(user);
     }
 }

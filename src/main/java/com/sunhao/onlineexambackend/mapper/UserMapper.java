@@ -38,4 +38,8 @@ public interface UserMapper extends BaseMapper<User> {
     IPage<User> getAdmins(Page<User> adminPage);
 
     User getAdminById(String id);
+
+    int updateStudent(User user);
+
+    int updateTeacher(User user);
 }

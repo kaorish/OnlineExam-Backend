@@ -84,17 +84,30 @@ public class UserController {
     }
 
     /**
-     * 更新学生信息待做
-     */
-
-    /**
-     * 重置学生密码
+     * 更新学生信息
      * 示例请求: PUT /user/student
      *
      * @param user 学生信息
      * @return 更新结果
      */
     @PutMapping("/student")
+    public ResultUtil updateStudent(@RequestBody User user) {
+        int res = userService.updateStudent(user);
+        if (res == 1) {
+            return ResultUtil.isSuccess("更新成功", null);
+        } else {
+            return ResultUtil.isFail(500, "更新失败");
+        }
+    }
+
+    /**
+     * 更新学生密码
+     * 示例请求: PUT /user/student/pwd
+     *
+     * @param updatePwdDTO 学生ID和新密码
+     * @return 更新结果
+     */
+    @PutMapping("/student/pwd")
     public ResultUtil updateStudentPwd(@RequestBody UpdatePwdDTO updatePwdDTO) {
         int res = userService.updateStudentPwd(updatePwdDTO);
         if (res == 1) {
@@ -178,9 +191,21 @@ public class UserController {
     }
 
     /**
-     * 更新老师信息待做
+     * 更新老师信息
+     * 示例请求: PUT /user/teacher
+     *
+     * @param user 老师信息
+     * @return 更新结果
      */
-
+    @PutMapping("/teacher")
+    public ResultUtil updateTeacher(@RequestBody User user) {
+        int res = userService.updateTeacher(user);
+        if (res == 1) {
+            return ResultUtil.isSuccess("更新成功", null);
+        } else {
+            return ResultUtil.isFail(500, "更新失败");
+        }
+    }
 
     /**
      * 删除老师
@@ -221,7 +246,6 @@ public class UserController {
         }
     }
 
-
     /**
      * 根据ID查询管理员
      * 示例请求: GET /user/admin?id=1
@@ -244,6 +268,4 @@ public class UserController {
      * 更新管理员信息待做
      * 删除管理员待做
      */
-
-
 }
