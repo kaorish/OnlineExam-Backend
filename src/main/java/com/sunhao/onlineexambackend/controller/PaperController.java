@@ -2,6 +2,7 @@ package com.sunhao.onlineexambackend.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sunhao.onlineexambackend.entity.dto.PaperDTO;
 import com.sunhao.onlineexambackend.entity.po.Paper;
 import com.sunhao.onlineexambackend.service.serviceimpl.PaperServiceImpl;
 import com.sunhao.onlineexambackend.util.ResultUtil;
@@ -77,18 +78,19 @@ public class PaperController {
 
     /**
      * 添加试卷
-     * 示例请求: POST /paper
-     * @param paper 试卷信息
+     * 示例请求: POST /paper/auto
+     * @param PaperDTO 组卷信息
      * @return 添加结果
      */
-    @PostMapping("/paper")
-    public ResultUtil addPaper(@RequestBody Paper paper) {
+    @PostMapping("/paper/auto")
+    public ResultUtil addPaperAuto(@RequestBody PaperDTO paperDTO) {
 
-        int res = paperService.addPaper(paper);
-        if (res == 1) {
-            return ResultUtil.isSuccess("添加成功", paper); // 返回插入后的 Paper 对象
+        boolean res = paperService.addPaperAuto(paperDTO);
+
+        if (res) {
+            return ResultUtil.isSuccess("自动组卷成功", null);
         } else {
-            return ResultUtil.isFail(500, "添加失败");
+            return ResultUtil.isFail(500, "自动组卷失败");
         }
     }
 
@@ -117,5 +119,4 @@ public class PaperController {
             return ResultUtil.isFail(500, "删除失败");
         }
     }
-
 }

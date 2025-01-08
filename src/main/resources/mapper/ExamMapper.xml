@@ -57,5 +57,10 @@
         WHERE subject LIKE CONCAT('%', #{subject}, '%')
     </select>
 
+    <!-- 根据考试名称查询考试ID -->
+    <select id="getExamByTitle" resultType="com.sunhao.onlineexambackend.entity.po.Exam">
+        SELECT * FROM exam WHERE title = #{title}
+    </select>
+
 
 </mapper>

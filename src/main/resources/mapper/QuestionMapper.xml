@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunhao.onlineexambackend.mapper.QuestionMapper">
 
+    <select id="getQuestionsByTypeAndSubject" resultType="com.sunhao.onlineexambackend.entity.po.Question">
+        SELECT * FROM question WHERE type = #{type} AND subject = #{subject}
+    </select>
 </mapper>

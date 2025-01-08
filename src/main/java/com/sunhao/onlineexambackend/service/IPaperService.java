@@ -2,6 +2,7 @@ package com.sunhao.onlineexambackend.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sunhao.onlineexambackend.entity.dto.PaperDTO;
 import com.sunhao.onlineexambackend.entity.po.Paper;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -24,4 +25,6 @@ public interface IPaperService extends IService<Paper> {
     int deletePaper(Integer id);
 
     IPage<Paper> getPapersByExamId(Integer exam_id, Page<Paper> paperPage);
+
+    boolean addPaperAuto(PaperDTO paperDTO);
 }

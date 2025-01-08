@@ -20,4 +20,6 @@ public interface ExamMapper extends BaseMapper<Exam> {
     Exam getExam(Integer id);
 
     IPage<Exam> getExamsBySubject(String subject, Page<Exam> examPage);
+
+    Exam getExamByTitle(String title);
 }

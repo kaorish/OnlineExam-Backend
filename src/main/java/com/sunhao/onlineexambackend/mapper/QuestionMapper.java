@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Question;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 题库表 Mapper 接口
@@ -15,5 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface QuestionMapper extends BaseMapper<Question> {
 
-    IPage<Question> selectPageBySubject(Page<Question> questionPage, String subject);
+    List<Question> getQuestionsByTypeAndSubject(String subject, Integer type);
 }

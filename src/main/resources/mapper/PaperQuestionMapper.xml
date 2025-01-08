@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunhao.onlineexambackend.mapper.PaperQuestionMapper">
 
+<!--    根据试卷id查询试卷的所有题目，分页查询-->
+    <select id="getPaperQuestions" resultType="com.sunhao.onlineexambackend.entity.po.Question">
+        select q.* from question q join paper_question pq on q.id = pq.question_id where pq.paper_id = #{paper_id}
+    </select>
+
+<!--    根据试卷id查询试卷的所有题目，不分页查询-->
+    <select id="getPaperQuestionsNoPage" resultType="com.sunhao.onlineexambackend.entity.po.Question">
+        select q.* from question q join paper_question pq on q.id = pq.question_id where pq.paper_id = #{paper_id}
+    </select>
+
 </mapper>

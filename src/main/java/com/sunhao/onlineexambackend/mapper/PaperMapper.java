@@ -15,5 +15,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface PaperMapper extends BaseMapper<Paper> {
 
-    IPage<Paper> getPapersByExamId(Integer exam_id, Page<Paper> paperPage);
 }
