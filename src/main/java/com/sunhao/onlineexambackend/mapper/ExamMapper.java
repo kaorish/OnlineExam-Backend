@@ -18,4 +18,6 @@ public interface ExamMapper extends BaseMapper<Exam> {
     IPage<Exam> getExams(Page<Exam> examPage);
 
     Exam getExam(Integer id);
+
+    IPage<Exam> getExamsBySubject(String subject, Page<Exam> examPage);
 }

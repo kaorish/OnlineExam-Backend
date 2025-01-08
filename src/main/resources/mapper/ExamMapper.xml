@@ -6,7 +6,7 @@
 <!--    create table exam(-->
 <!--    id int primary key auto_increment comment '考试编号',-->
 <!--    title varchar(255) not null comment '考试名称',-->
-<!--    description varchar(255) default null comment '考试描述',-->
+<!--    subject varchar(255) not null comment '学科',-->
 <!--    paper_id int default null comment '选用试卷编号',-->
 <!--    institute varchar(32) default null comment '学院',-->
 <!--    major varchar(32) default null comment '专业',-->
@@ -21,6 +21,24 @@
 <!--    tips varchar(255) default null comment '注意事项'-->
 <!--    ) Engine = InnoDB CHARACTER SET = utf8 comment '考试安排表';-->
 
+    <!-- 定义 resultMap -->
+    <resultMap id="BaseResultMap" type="com.sunhao.onlineexambackend.entity.po.Exam">
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="subject" property="subject" />
+        <result column="paper_id" property="paperId" />
+        <result column="institute" property="institute" />
+        <result column="major" property="major" />
+        <result column="grade" property="grade" />
+        <result column="term" property="term" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="duration" property="duration" />
+        <result column="total_score" property="totalScore" />
+        <result column="type" property="type" />
+        <result column="tips" property="tips" />
+    </resultMap>
+
     <!-- 查询所有考试 -->
     <select id="getExams" resultType="com.sunhao.onlineexambackend.entity.po.Exam">
         SELECT * FROM exam
@@ -30,5 +48,14 @@
     <select id="getExam" resultType="com.sunhao.onlineexambackend.entity.po.Exam">
         SELECT * FROM exam WHERE id = #{id}
     </select>
+
+    <!-- 根据考试名称模糊匹配考试，已给subject字段添加全文索引 -->
+    <select id="getExamsBySubject" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        SELECT *
+        FROM exam
+        WHERE subject LIKE CONCAT('%', #{subject}, '%')
+    </select>
+
 
 </mapper>

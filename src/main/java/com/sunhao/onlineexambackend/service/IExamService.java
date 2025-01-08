@@ -47,4 +47,6 @@ public interface IExamService extends IService<Exam> {
      * @return 分页结果
      */
     IPage<ExamWithStatusDTO> getExamsByStatus(ExamStatus status, int page, int size);
+
+    IPage<Exam> getExamsBySubject(String subject, Page<Exam> examPage);
 }

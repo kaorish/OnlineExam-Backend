@@ -15,15 +15,28 @@ public class PaperQuestionController {
     @Resource
     private PaperQuestionServiceImpl paperQuestionService;
 
-    @GetMapping("/paperQuestion")
+    /**
+     * 根据试卷id获取试卷题目，分三个数组，0是选择题，1是填空题，2是判断题
+     * @param paperId
+     * @param page
+     * @param size
+     * @return
+     */
+    @GetMapping("/paperQuestions")
     public ResultUtil getPaperQuestion(
             @RequestParam(value = "paperId") Integer paperId,
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size) {
 
+        Page<PaperQuestion> paperQuestionPage = new Page<>(page, size);
         return null;
     }
 
+    /**
+     * 添加试卷题目
+     * @param paperQuestion
+     * @return
+     */
     @PostMapping("/paperQuestion")
     public ResultUtil addPaperQuestion(@RequestBody PaperQuestion paperQuestion) {
         int res = paperQuestionService.addPaperQuestion(paperQuestion);

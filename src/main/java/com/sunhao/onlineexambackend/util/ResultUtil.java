@@ -29,14 +29,14 @@ public class ResultUtil {
      * 成功返回
      */
     public static ResultUtil isSuccess(Object data){
-        return new ResultUtil(20000,true,"操作成功",data);
+        return new ResultUtil(200,true,"操作成功",data);
     }
 
     /**
      * 成功返回,可以传递msg
      */
     public static ResultUtil isSuccess(String msg,Object data){
-        return new ResultUtil(20000,true,msg,data);
+        return new ResultUtil(200,true,msg,data);
     }
 
     /**

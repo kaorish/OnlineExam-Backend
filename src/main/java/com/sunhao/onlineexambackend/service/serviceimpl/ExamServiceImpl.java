@@ -1,5 +1,6 @@
 package com.sunhao.onlineexambackend.service.serviceimpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.dto.ExamWithStatusDTO;
@@ -119,4 +120,19 @@ public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam> implements IE
         dtoPage.setRecords(dtoList);
         return dtoPage;
     }
+
+    @Override
+    public IPage<Exam> getExamsBySubject(String subject, Page<Exam> examPage) {
+
+        QueryWrapper<Exam> queryWrapper = new QueryWrapper<>();
+
+        // 将输入的 subject 分解成多个关键词
+        String[] keywords = subject.split("");  // 这里简单地按照每个字符分开，可以根据需求调整分割方式
+
+        // 为每个关键词添加 LIKE 查询条件
+        for (String keyword : keywords)
+            queryWrapper.like("subject", keyword);  // 添加 LIKE 查询条件
+        return examMapper.selectPage(examPage, queryWrapper);  // 调用 BaseMapper 提供的 selectPage 方法
+    }
+
 }

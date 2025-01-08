@@ -115,6 +115,29 @@ public class ExamController {
     }
 
     /**
+     * 分页根据科目模糊查询考试
+     * 示例请求: GET /exams/bySubject?subject=数学&page=1&size=10
+     *
+     * @param subject 科目
+     * @param page    当前页码
+     * @param size    每页记录数
+     * @return 分页结果
+     */
+    @GetMapping("/exams/bySubject")
+    public ResultUtil getExamsBySubject(
+            @RequestParam(value = "subject") String subject,
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        Page<Exam> examPage = new Page<>(page, size);
+        IPage<Exam> res = examService.getExamsBySubject(subject, examPage);
+        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+            return ResultUtil.isSuccess("分页模糊查询科目考试成功", res);
+        } else {
+            return ResultUtil.isFail(404, "未查询到考试");
+        }
+    }
+
+    /**
      * 添加考试
      * 示例请求: POST /exam
      *

@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Resource
     private UserMapper userMapper;
-    @Autowired
+    @Resource
     private HttpSession httpSession;
 
     @Override
@@ -43,14 +43,14 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public int register(RegistrationDTO registrationDTO) {
         User user = registrationDTO.getUser();
-        String salt = SaltGenerator.generateSalt();
-        String password = HashPasswordWithSalt.hashPasswordWithSalt(user.getPassword(), salt);
-        user.setSalt(salt);
-        user.setPassword(password);
         String verificationCode = registrationDTO.getVerificationCode();
         if (!verificationCode.equals(httpSession.getAttribute("verificationCode"))) {
             return 0;
         }
+        String salt = SaltGenerator.generateSalt();
+        String password = HashPasswordWithSalt.hashPasswordWithSalt(user.getPassword(), salt);
+        user.setSalt(salt);
+        user.setPassword(password);
         return userMapper.addStudent(user);
     }
 
