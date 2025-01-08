@@ -1,7 +1,10 @@
 package com.sunhao.onlineexambackend.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -26,11 +29,15 @@ public class Score implements Serializable {
     /**
      * 考试编号
      */
+    @TableField("exam_id")
+    @JsonProperty("exam_id")
     private Integer examId;
 
     /**
      * 学工号
      */
+    @TableField("user_id")
+    @JsonProperty("user_id")
     private Integer userId;
 
     /**

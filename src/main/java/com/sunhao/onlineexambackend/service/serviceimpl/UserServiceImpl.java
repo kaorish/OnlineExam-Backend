@@ -40,6 +40,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 
     public int addStudent(User user) {
+        String salt = SaltGenerator.generateSalt();
+        String password = HashPasswordWithSalt.hashPasswordWithSalt(user.getPassword(), salt);
+        user.setSalt(salt);
+        user.setPassword(password);
         return userMapper.addStudent(user);
     }
 
