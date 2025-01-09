@@ -6,7 +6,6 @@ import com.sunhao.onlineexambackend.entity.po.Reply;
 import com.sunhao.onlineexambackend.service.serviceimpl.ReplyServiceImpl;
 import com.sunhao.onlineexambackend.util.ResultUtil;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 
@@ -32,12 +31,12 @@ public class ReplyController {
      * @return
      */
     @GetMapping("/replies")
-    public ResultUtil getReplies(@RequestParam(value = "message_id") String message_id,
+    public ResultUtil getReplies(@RequestParam(value = "message_id") Integer message_id,
                                  @RequestParam(value = "page", defaultValue = "1") Integer page,
                                  @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Reply> replyPage = new Page<>(page, size);
         IPage<Reply> res = replyService.getReplies(replyPage, message_id);
-        if (res != null && res.getTotal() > 0) {
+        if (res != null) {
             return ResultUtil.isSuccess("查询成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到回复");

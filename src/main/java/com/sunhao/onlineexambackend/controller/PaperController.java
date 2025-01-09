@@ -7,7 +7,6 @@ import com.sunhao.onlineexambackend.entity.po.Paper;
 import com.sunhao.onlineexambackend.service.serviceimpl.PaperServiceImpl;
 import com.sunhao.onlineexambackend.util.ResultUtil;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 
@@ -38,7 +37,7 @@ public class PaperController {
                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Paper> paperPage = new Page<>(page, size);
         IPage<Paper> res = paperService.getPapers(paperPage);
-        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+        if (res != null) {
             return ResultUtil.isSuccess("分页查询所有试卷", res);
         } else {
             return ResultUtil.isFail(404, "未查询到试卷");
@@ -52,7 +51,7 @@ public class PaperController {
             @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Paper> paperPage = new Page<>(page, size);
         IPage<Paper> res = paperService.getPapersByExamId(exam_id, paperPage);
-        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+        if (res != null) {
             return ResultUtil.isSuccess("分页查询所有试卷", res);
         } else {
             return ResultUtil.isFail(404, "未查询到试卷");

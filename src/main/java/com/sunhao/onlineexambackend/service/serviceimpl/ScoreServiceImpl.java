@@ -31,7 +31,7 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
     }
 
     @Override
-    public IPage<Score> getScoresByUserId(Page<Score> scorePage, Integer userId) {
+    public IPage<Score> getScoresByUserId(Page<Score> scorePage, String userId) {
         QueryWrapper<Score> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
         return scoreMapper.selectPage(scorePage, queryWrapper);

@@ -78,7 +78,7 @@ public class ExamController {
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size) {
         IPage<ExamWithStatusDTO> res = examService.getAllExamsWithStatus(page, size);
-        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+        if (res != null) {
             return ResultUtil.isSuccess("分页查询所有考试及其状态成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到考试");
@@ -107,7 +107,7 @@ public class ExamController {
         }
 
         IPage<ExamWithStatusDTO> res = examService.getExamsByStatus(examStatus, page, size);
-        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+        if (res != null) {
             return ResultUtil.isSuccess("分页查询指定状态考试成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到该状态的考试");
@@ -130,7 +130,7 @@ public class ExamController {
             @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Exam> examPage = new Page<>(page, size);
         IPage<Exam> res = examService.getExamsBySubject(subject, examPage);
-        if (res != null && res.getRecords() != null && !res.getRecords().isEmpty()) {
+        if (res != null) {
             return ResultUtil.isSuccess("分页模糊查询科目考试成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到考试");

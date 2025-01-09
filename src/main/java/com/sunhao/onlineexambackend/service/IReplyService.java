@@ -15,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IReplyService extends IService<Reply> {
 
-    IPage<Reply> getReplies(Page<Reply> replyPage, String messageId);
+    IPage<Reply> getReplies(Page<Reply> replyPage, Integer messageId);
 }

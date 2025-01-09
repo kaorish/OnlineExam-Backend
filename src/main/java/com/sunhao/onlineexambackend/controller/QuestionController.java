@@ -121,5 +121,4 @@ public class QuestionController {
             return ResultUtil.isFail(500, "删除题目失败");
         }
     }
-
 }

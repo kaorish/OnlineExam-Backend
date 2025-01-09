@@ -41,7 +41,7 @@ public class Exam implements Serializable {
      */
     @TableField("paper_id")
     @JsonProperty("paper_Id")
-    private String paperId;
+    private Integer paperId;
 
     /**
      * 学院
@@ -118,11 +118,11 @@ public class Exam implements Serializable {
         this.subject = subject;
     }
 
-    public String getPaperId() {
+    public Integer getPaperId() {
         return paperId;
     }
 
-    public void setPaperId(String paperId) {
+    public void setPaperId(Integer paperId) {
         this.paperId = paperId;
     }
 

@@ -35,7 +35,7 @@ public class ScoreController {
                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Score> scorePage = new Page<>(page, size);
         IPage<Score> res = scoreService.getScores(scorePage);
-        if (res != null && res.getTotal() > 0) {
+        if (res != null) {
             return ResultUtil.isSuccess("查询成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到成绩");
@@ -53,10 +53,10 @@ public class ScoreController {
     public ResultUtil getScoresByUserId(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size,
-            @RequestParam("user_id") Integer user_id) {
+            @RequestParam("user_id") String user_id) {
         Page<Score> scorePage = new Page<>(page, size);
         IPage<Score> res = scoreService.getScoresByUserId(scorePage, user_id);
-        if (res != null && res.getTotal() > 0) {
+        if (res != null) {
             return ResultUtil.isSuccess("查询成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到成绩");
@@ -77,7 +77,7 @@ public class ScoreController {
             @RequestParam("exam_id") Integer exam_id) {
         Page<Score> scorePage = new Page<>(page, size);
         IPage<Score> res = scoreService.getScoresByExamId(scorePage, exam_id);
-        if (res != null && res.getTotal() > 0) {
+        if (res != null) {
             return ResultUtil.isSuccess("查询成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到成绩");

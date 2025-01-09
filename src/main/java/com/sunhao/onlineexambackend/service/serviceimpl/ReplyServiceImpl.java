@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class ReplyServiceImpl extends ServiceImpl<ReplyMapper, Reply> implements IReplyService {
 
     @Override
-    public IPage<Reply> getReplies(Page<Reply> replyPage, String messageId) {
+    public IPage<Reply> getReplies(Page<Reply> replyPage, Integer messageId) {
         QueryWrapper<Reply> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("message_id", messageId);
         return baseMapper.selectPage(replyPage, queryWrapper);

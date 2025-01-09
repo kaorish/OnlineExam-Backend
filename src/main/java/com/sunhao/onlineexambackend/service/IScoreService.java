@@ -17,7 +17,7 @@ public interface IScoreService extends IService<Score> {
 
     IPage<Score> getScores(Page<Score> scorePage);
 
-    IPage<Score> getScoresByUserId(Page<Score> scorePage, Integer userId);
+    IPage<Score> getScoresByUserId(Page<Score> scorePage, String userId);
 
     IPage<Score> getScoresByExamId(Page<Score> scorePage, Integer examId);
 

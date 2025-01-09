@@ -35,7 +35,7 @@ public class MessageController {
                                   @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Page<Message> messagePage = new Page<>(page, size);
         IPage<Message> res = messageService.getMessages(messagePage);
-        if (res != null && res.getTotal() > 0) {
+        if (res != null) {
             return ResultUtil.isSuccess("查询成功", res);
         } else {
             return ResultUtil.isFail(404, "未查询到留言");

@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.PaperQuestion;
 import com.sunhao.onlineexambackend.entity.po.Question;
-import com.sunhao.onlineexambackend.service.PaperQuestionService;
 import com.sunhao.onlineexambackend.service.serviceimpl.PaperQuestionServiceImpl;
 import com.sunhao.onlineexambackend.util.ResultUtil;
 import org.springframework.web.bind.annotation.*;
@@ -42,11 +41,13 @@ public class PaperQuestionController {
 
     /**
      * 根据试卷id获取试卷题目，分三个数组，0是选择题，1是填空题，2是判断题
+     * 不够规范，待重构，具体逻辑应该放在实现类，返回应该用工具类返回，目前先这样用着
      * @param paper_id
      * @return
      */
     @GetMapping("/paperQuestions/byMapping")
-    public Map<Integer, List<Question>> getPaperQuestionsByMapping(@RequestParam(value = "paper_id") Integer paper_id) {
+    public Map<Integer, List<Question>> getPaperQuestionsByMapping(
+            @RequestParam(value = "paper_id") Integer paper_id) {
 
         List<Question> questions = paperQuestionService.getPaperQuestionsNoPage(paper_id);
 //        if (questions == null) {
