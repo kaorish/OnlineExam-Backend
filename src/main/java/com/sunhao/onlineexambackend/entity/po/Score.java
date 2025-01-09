@@ -38,7 +38,7 @@ public class Score implements Serializable {
      */
     @TableField("user_id")
     @JsonProperty("user_id")
-    private Integer userId;
+    private String userId;
 
     /**
      * 学科
@@ -71,11 +71,11 @@ public class Score implements Serializable {
         this.examId = examId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -31,7 +31,7 @@ public class Reply implements Serializable {
      */
     @TableField("user_id")
     @JsonProperty("user_id")
-    private Integer userId;
+    private String userId;
 
     /**
      * 留言编号
@@ -58,11 +58,11 @@ public class Reply implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
