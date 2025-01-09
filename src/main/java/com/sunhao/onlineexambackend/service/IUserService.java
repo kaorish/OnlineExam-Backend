@@ -41,4 +41,6 @@ public interface IUserService extends IService<User> {
     int updateStudent(User user);
 
     int updateTeacher(User user);
+
+    int addAdmin(User user);
 }

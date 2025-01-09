@@ -264,7 +264,23 @@ public class UserController {
     }
 
     /**
-     * 添加管理员待做
+     * 添加管理员
+     * 示例请求: POST /user/admin
+     *
+     * @param user 管理员信息
+     * @return 添加结果
+     */
+    @PostMapping("/admin")
+    public ResultUtil addAdmin(@RequestBody User user) {
+        int res = userService.addAdmin(user);
+        if (res == 1) {
+            return ResultUtil.isSuccess("添加成功", null);
+        } else {
+            return ResultUtil.isFail(500, "添加失败");
+        }
+    }
+
+    /**
      * 更新管理员信息待做
      * 删除管理员待做
      * 以后需要完善这些功能时再做

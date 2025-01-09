@@ -107,4 +107,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public int updateTeacher(User user) {
         return userMapper.updateTeacher(user);
     }
+
+    @Override
+    public int addAdmin(User user) {
+        String salt = SaltGenerator.generateSalt();
+        String password = HashPasswordWithSalt.hashPasswordWithSalt(user.getPassword(), salt);
+        user.setSalt(salt);
+        user.setPassword(password);
+        return userMapper.addAdmin(user);
+    }
 }
