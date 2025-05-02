@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.po.Message;
+import com.sunhao.onlineexambackend.entity.po.Reply;
 import com.sunhao.onlineexambackend.mapper.MessageMapper;
+import com.sunhao.onlineexambackend.mapper.ReplyMapper;
 import com.sunhao.onlineexambackend.service.IMessageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
 
     @Resource
     private MessageMapper messageMapper;
+
+    @Resource
+    private ReplyMapper replyMapper;
 
 
     @Override
@@ -45,6 +50,11 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
 
     @Override
     public int deleteMessage(Integer id) {
+        // 先删除该留言下的回复，通过message_id删除
+        QueryWrapper<Reply> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("message_id", id);
+        replyMapper.delete(queryWrapper);
+        // 删除留言
         return messageMapper.deleteById(id);
     }
 }

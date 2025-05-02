@@ -134,5 +134,4 @@ public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam> implements IE
             queryWrapper.like("subject", keyword);  // 添加 LIKE 查询条件
         return examMapper.selectPage(examPage, queryWrapper);  // 调用 BaseMapper 提供的 selectPage 方法
     }
-
 }

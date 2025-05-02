@@ -8,14 +8,14 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.exam</groupId>
-    <artifactId>exam</artifactId>
+    <groupId>com.sunhao.onlineexambackend</groupId>
+    <artifactId>onlineexambackend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>examsystem</name>
     <description>online examsystem project for Spring Boot</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -120,8 +120,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>

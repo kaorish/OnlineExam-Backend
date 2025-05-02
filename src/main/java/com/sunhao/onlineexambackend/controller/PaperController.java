@@ -76,7 +76,7 @@ public class PaperController {
     }
 
     /**
-     * 添加试卷
+     * 智能组卷试卷
      * 示例请求: POST /paper/auto
      * @param paperDTO 组卷信息
      * @return 添加结果
@@ -87,9 +87,9 @@ public class PaperController {
         boolean res = paperService.addPaperAuto(paperDTO);
 
         if (res) {
-            return ResultUtil.isSuccess("自动组卷成功", null);
+            return ResultUtil.isSuccess("智能组卷成功", null);
         } else {
-            return ResultUtil.isFail(500, "自动组卷失败");
+            return ResultUtil.isFail(500, "智能组卷失败");
         }
     }
 

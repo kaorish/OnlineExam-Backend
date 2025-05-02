@@ -1,7 +1,6 @@
 package com.sunhao.onlineexambackend.mapper;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import com.sunhao.onlineexambackend.entity.po.Question;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 

@@ -1,6 +1,8 @@
 package com.sunhao.onlineexambackend.service.serviceimpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunhao.onlineexambackend.entity.dto.PaperDTO;
@@ -15,6 +17,7 @@ import com.sunhao.onlineexambackend.mapper.QuestionMapper;
 import com.sunhao.onlineexambackend.service.IPaperService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -58,10 +61,22 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         return paperMapper.insert(paper);
     }
 
-    @Override
+    @Transactional
     public int deletePaper(Integer id) {
+
+        // 1) 删子表
+        paperQuestionMapper.delete(
+                new LambdaQueryWrapper<PaperQuestion>().eq(PaperQuestion::getPaperId, id));
+
+        // 2) 置空 exam.paper_id
+        examMapper.update(null,
+                new LambdaUpdateWrapper<Exam>().eq(Exam::getPaperId, id)
+                        .set(Exam::getPaperId, null));
+
+        // 3) 删父表
         return paperMapper.deleteById(id);
     }
+
 
     @Override
     public IPage<Paper> getPapersByExamId(Integer exam_id, Page<Paper> paperPage) {
